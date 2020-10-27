@@ -46,15 +46,6 @@ def KNN_Builder(df_train, df_test):
         minV.append(min(kth_more))
         maxV.append(max(kth_more))
 
-    # create new x matrixes (train and test) with normalized values
-    # for i in range(len(line_train[0])):
-    #     for j in range(train_num_lines):
-    #         line_train[j][i] = (float(line_train[j][i]) - minV[i]) / (maxV[i] - minV[i])
-    #
-    # for i in range(len(line_test[0])):
-    #     for j in range(test_num_lines):
-    #         line_test[j][i] = (float(line_test[j][i]) - minV[i]) / (maxV[i] - minV[i])
-
     # getting y_pred vec by comparing to k neighbors
     for test_line in range(len(line_test)):
         res_list = []
