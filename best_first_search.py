@@ -6,10 +6,6 @@ import abc
 
 
 class SearchNodesPriorityQueue:
-    """
-    This class is used as a data structure for the `open` queue in the BestFirstSearch algorithm.
-    Notice that we store a mapping from state to the node represents it for quick operations.
-    """
 
     def __init__(self):
         self._nodes_queue = heapdict()  # node -> priority (selecting the next node to expand is done by this score)
@@ -47,10 +43,6 @@ class SearchNodesPriorityQueue:
 
 
 class SearchNodesCollection:
-    """
-    This class is used as a data structure for the `close` set in the BestFirstSearch algorithm.
-    Notice that we store a mapping from state to the node represents it for quick operations.
-    """
 
     def __init__(self):
         self._state_to_search_node_mapping: Dict[GraphProblemState, SearchNode] = {}
@@ -78,27 +70,7 @@ class SearchNodesCollection:
 
 
 class BestFirstSearch(GraphProblemSolver):
-    """
-    Best First Search is a generic search algorithm, as we learnt in class.
-    This algorithm maintains an `open` priority queue during the search.
-    The `open` queue stores search nodes (of type SearchNode) created
-     during the search.
-    As long as the open queue is not empty, the algorithm extract the
-     next node from it and expands it.
-    Expanding a node is done by iterating over the successor states of the state
-     of the expanded node. For each successor state, a dedicated node is created,
-     and this node is opened (added to the open queue).
-    Notice that, as a generic algorithm, it represents a family of algorithms,
-     and hence this is an abstract class. It means that it has abstract methods
-     that have to be overridden by the inheritor.
-    The priority that a node is associated with in the `open` queue, is not
-     determined by this generic algorithm, and have to be defined by the inheritor
-     by overriding the abstract method `_calc_node_expanding_priority()`.
-    The opening of a successor node is also not defined by this algorithm,
-     and have to be defined by the inheritor by overriding the abstract method
-     `_open_successor_node()`.
-    """
-
+  
     solver_name: str = 'BestFirstSearch'
 
     def __init__(self, use_close: bool = True, max_nr_states_to_expand: Optional[int] = None,
@@ -178,19 +150,9 @@ class BestFirstSearch(GraphProblemSolver):
         )
 
     def _init_solver(self, problem: GraphProblem):
-        """
-        Called once by `solve_problem()` right after creating `open` and `close`.
-        This method might be overridden by the inheritor algorithm if needed.
-        This method can create and initialize fields of this object, in order
-         to be used later by other methods called during the search.
-        """
-
+       
     def _extract_next_search_node_to_expand(self, problem: GraphProblem) -> Optional[SearchNode]:
-        """
-        Extracts the next node to expand from the open queue.
-        This is a default implementation.
-        This method might be overridden by the inheritor algorithm if needed.
-        """
+     
         if self.open.is_empty():
             return None
         node_to_expand = self.open.pop_next_node()
